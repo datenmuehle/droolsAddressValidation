@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head/>
+<f:view>
+    <p:tabMenu activeIndex="#{param.i}">
+        <p:menuitem value="#{i18NBundle.get('pickup.menu.title')}" outcome="addressinput" icon="pi pi-star">
+            <f:param name="i" value="0"/>
+        </p:menuitem>
+        <p:menuitem value="..." outcome="addressinput" icon="pi pi-star">
+            <f:param name="i" value="0"/>
+        </p:menuitem>
+    </p:tabMenu>
+    <h:form id="pickup">
+        <p:panel id="address" header="#{i18NBundle.get('pickup.panel.head')}">
+            <p:messages for="pickup" id="messages" showDetail="true">
+                <p:autoUpdate/>
+            </p:messages>
+            <h:panelGrid id="grid" columns="2" cellpadding="5">
+                <p:outputLabel for="name" value="#{i18NBundle.get('pickup.name')}"/><p:inputText id="name" value="#{address.name}"/>
+                <p:outputLabel for="street" value="#{i18NBundle.get('pickup.street')}"/><p:inputText id="street" value="#{address.street}"/>
+                <p:outputLabel for="zipcode" value="#{i18NBundle.get('pickup.zipcode')}"/><p:inputText id="zipcode" value="#{address.zipcode}"/>
+                <p:outputLabel for="city" value="#{i18NBundle.get('pickup.city')}"/><p:inputText id="city" value="#{address.city}"/>
+            </h:panelGrid>
+            <p>
+                <p:commandButton value="#{i18NBundle.get('submit')}" actionListener="#{address.validate}"/>
+            </p>
+        </p:panel>
+    </h:form>
+
+</f:view>
+</html>

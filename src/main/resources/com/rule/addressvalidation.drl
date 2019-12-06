@@ -1,0 +1,52 @@
+package com.rule;
+dialect  "mvel"
+
+import org.datenmuehle.addressvalidation.Address;
+
+rule "check name not empty" salience 1
+  when AddressObject: Address(name.empty == true)
+  then
+    AddressObject.setValidationResult("address.name.empty");
+  end
+
+rule "check name length" salience 2
+  when AddressObject: Address(name.empty == false && name.length < 5)
+  then
+    AddressObject.setValidationResult("address.name.tooShort");
+  end
+
+rule "check street not empty" salience 1
+  when AddressObject: Address(street.empty == true)
+  then
+    AddressObject.setValidationResult("address.street.empty");
+  end
+
+rule "check street length" salience 2
+  when AddressObject: Address(street.empty == false && street.length < 5)
+  then
+    AddressObject.setValidationResult("address.street.tooShort");
+  end
+
+rule "check zipcode not empty" salience 1
+  when AddressObject: Address(zipcode.empty == true)
+  then
+    AddressObject.setValidationResult("address.zipcode.empty");
+  end
+
+rule "check zipcode length" salience 2
+  when AddressObject: Address(zipcode.empty == false && zipcode.length < 5)
+  then
+    AddressObject.setValidationResult("address.zipcode.tooShort");
+  end
+
+rule "check city not empty" salience 1
+  when AddressObject: Address(city.empty == true)
+  then
+    AddressObject.setValidationResult("address.city.empty");
+  end
+
+rule "check city length" salience 2
+  when AddressObject: Address(city.empty == false && city.length < 5)
+  then
+    AddressObject.setValidationResult("address.city.tooShort");
+  end
